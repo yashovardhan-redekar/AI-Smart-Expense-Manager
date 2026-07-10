@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import Student from "./components/Student";
 import Counter from "./components/Counter";
 import LikeButton from "./components/LikeButton";
+import NameInput from "./components/NAmeInput";
+import UserForm from "./components/UserForm";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Footer />
       <Counter />
       <LikeButton />
+      <NameInput />
+      <UserForm />
     </>
   );
 }
