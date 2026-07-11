@@ -4,9 +4,12 @@ import Footer from "./components/Footer";
 import Student from "./components/Student";
 import Counter from "./components/Counter";
 import LikeButton from "./components/LikeButton";
-import NameInput from "./components/NAmeInput";
+import NameInput from "./components/NameInput";
 import UserForm from "./components/UserForm";
-
+import Fruitlist from "./components/Fruitlist";
+import Studentlist from "./components/Studentlist"
+import Studentmanager from "./components/Studentmanager";
+import ExpenseTracker from "./components/ExpenseTracker";
 function App() {
   return (
     <>
@@ -22,6 +25,10 @@ function App() {
       <LikeButton />
       <NameInput />
       <UserForm />
+      <Fruitlist />
+      <Studentlist />
+      <Studentmanager />
+      <ExpenseTracker />
     </>
   );
 }
