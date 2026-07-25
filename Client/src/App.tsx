@@ -1,33 +1,43 @@
-import Welcome from "./components/welcome";
-import Greeting from "./components/Greeting";
-import Footer from "./components/Footer";
-import Student from "./components/Student";
-import Counter from "./components/Counter";
-import LikeButton from "./components/LikeButton";
-import NameInput from "./components/NameInput";
-import UserForm from "./components/UserForm";
-import Fruitlist from "./components/Fruitlist";
-import Studentlist from "./components/Studentlist"
-import Studentmanager from "./components/Studentmanager";
+// import ProfileCard from "./components/ProfileCard";
+
+// function App() {
+//   return (
+//     <>
+//       <ProfileCard
+//         name="Yashovardhan Redekar"
+//         branch="Computer Engineering"
+//         year="Final Year"
+//         cgpa={7.91}
+//         skills="React, TypeScript, Java"
+//       />
+
+//       <ProfileCard
+//         name="Rahul Sharma"
+//         branch="Information Technology"
+//         year="Third Year"
+//         cgpa={8.45}
+//         skills="Python, Django"
+//       />
+
+//       <ProfileCard
+//         name="Priya Patil"
+//         branch="Computer Engineering"
+//         year="Second Year"
+//         cgpa={9.12}
+//         skills="C++, React"
+//       />
+//     </>
+//   );
+// }
+
+// export default App;
+
+
 import ExpenseTracker from "./components/ExpenseTracker";
+
 function App() {
   return (
     <>
-      <Welcome />
-     <Greeting name="Yash" age={21} />
-     <Student
-        name="Yash"
-        branch="Computer Engineering"
-        cgpa={9.95}
-        />
-      <Footer />
-      <Counter />
-      <LikeButton />
-      <NameInput />
-      <UserForm />
-      <Fruitlist />
-      <Studentlist />
-      <Studentmanager />
       <ExpenseTracker />
     </>
   );
