@@ -1,4 +1,5 @@
 import type { Expense } from "../types/Expense";
+import "./ExpenseItem.css";
 
 type ExpenseItemProps = {
   expense: Expense;
@@ -14,28 +15,34 @@ function ExpenseItem({
   editExpense,
 }: ExpenseItemProps) {
   return (
-    <div
-      style={{
-        border: "1px solid gray",
-        padding: "10px",
-        marginBottom: "10px",
-      }}
-    >
-      <h3>{expense.title}</h3>
+    <div className="expense-card">
 
-      <p>Amount: ₹{expense.amount}</p>
+      <div className="expense-details">
+        <h3>{expense.title}</h3>
 
-      <p>Category: {expense.category}</p>
+        <p><strong>💰 Amount:</strong> ₹{expense.amount}</p>
 
-      <p>Date: {expense.date}</p>
+        <p><strong>📂 Category:</strong> {expense.category}</p>
 
-      <button onClick={() => editExpense(index)}>
-        Edit
-      </button>
+        <p><strong>📅 Date:</strong> {expense.date}</p>
+      </div>
 
-      <button onClick={() => deleteExpense(index)}>
-        Delete
-      </button>
+      <div className="button-group">
+        <button
+          className="edit-btn"
+          onClick={() => editExpense(index)}
+        >
+          ✏ Edit
+        </button>
+
+        <button
+          className="delete-btn"
+          onClick={() => deleteExpense(index)}
+        >
+          🗑 Delete
+        </button>
+      </div>
+
     </div>
   );
 }

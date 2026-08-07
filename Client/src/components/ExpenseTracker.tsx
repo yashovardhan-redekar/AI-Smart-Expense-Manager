@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseList from "./ExpenseList";
 import TotalExpense from "./TotalExpense";
+import Dashboard from "./Dashboard";
+import CategorySummary from "./CategorySummary";
+import "./ExpenseTracker.css";
 
 import type { Expense } from "../types/Expense";
 
 function ExpenseTracker() {
-
-  // Load expenses directly when state is created
+  // Load expenses from localStorage
   const [expenses, setExpenses] = useState<Expense[]>(() => {
     const saved = localStorage.getItem("expenses");
 
@@ -19,9 +21,8 @@ function ExpenseTracker() {
     return [];
   });
 
-
+  // Search
   const [searchText, setSearchText] = useState("");
-
 
   // Editing states
   const [editingIndex, setEditingIndex] =
@@ -30,8 +31,7 @@ function ExpenseTracker() {
   const [editingExpense, setEditingExpense] =
     useState<Expense | null>(null);
 
-
-  // Save expenses whenever expenses change
+  // Save expenses whenever they change
   useEffect(() => {
     localStorage.setItem(
       "expenses",
@@ -39,49 +39,69 @@ function ExpenseTracker() {
     );
   }, [expenses]);
 
-
-  // Delete expense
+  // Delete one expense
   const deleteExpense = (indexToDelete: number) => {
-
     setExpenses(
       expenses.filter(
         (_, index) => index !== indexToDelete
       )
     );
-
   };
 
+  // Clear all expenses
+  const clearAllExpenses = () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete all expenses?"
+    );
 
-  // Start editing an expense
+    if (confirmDelete) {
+      setExpenses([]);
+      localStorage.removeItem("expenses");
+
+      setEditingIndex(null);
+      setEditingExpense(null);
+    }
+  };
+
+  // Edit expense
   const editExpense = (index: number) => {
-
     setEditingIndex(index);
-
     setEditingExpense(expenses[index]);
-
   };
-
 
   return (
-    <>
-      <h1>Expense Tracker</h1>
+  <div className="expense-container">
+     <h1 className="title">
+  💰 Expense Tracker
+</h1>
 
+      {expenses.length > 0 && (
+  <button
+    className="clear-btn"
+    onClick={clearAllExpenses}
+  >
+    🗑️ Clear All Expenses
+  </button>
+)}
+      <br />
+      <br />
+
+      <Dashboard expenses={expenses} />
 
       <ExpenseForm
-  key={editingIndex ?? "new"}
-  expenses={expenses}
-  setExpenses={setExpenses}
-  editingIndex={editingIndex}
-  setEditingIndex={setEditingIndex}
-  editingExpense={editingExpense}
-  setEditingExpense={setEditingExpense}
-/>
-
+        key={editingIndex ?? "new"}
+        expenses={expenses}
+        setExpenses={setExpenses}
+        editingIndex={editingIndex}
+        setEditingIndex={setEditingIndex}
+        editingExpense={editingExpense}
+        setEditingExpense={setEditingExpense}
+      />
 
       <br />
 
-
       <input
+      className="search-box"
         type="text"
         placeholder="🔍 Search Expense"
         value={searchText}
@@ -90,10 +110,8 @@ function ExpenseTracker() {
         }
       />
 
-
       <br />
       <br />
-
 
       <ExpenseList
         expenses={expenses}
@@ -102,12 +120,14 @@ function ExpenseTracker() {
         editExpense={editExpense}
       />
 
+      <br />
 
-      <TotalExpense
-        expenses={expenses}
-      />
+      <CategorySummary expenses={expenses} />
 
-    </>
+      <br />
+
+      <TotalExpense expenses={expenses} />
+    </div>
   );
 }
 

@@ -1,0 +1,43 @@
+.category-summary {
+  background-color: white;
+  padding: 20px;
+  margin-top: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.category-summary h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+.category-name {
+  font-size: 17px;
+  font-weight: bold;
+  color: #444;
+}
+
+.category-amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.category-summary p {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}

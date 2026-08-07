@@ -1,0 +1,40 @@
+.expense-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 25px;
+}
+
+.title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 40px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.clear-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clear-btn:hover {
+  background: #b02a37;
+}

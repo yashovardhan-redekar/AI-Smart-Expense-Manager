@@ -1,5 +1,6 @@
 import type { Expense } from "../types/Expense";
 import ExpenseItem from "./ExpenseItem";
+import "./ExpenseList.css";
 
 type ExpenseListProps = {
   expenses: Expense[];
@@ -14,6 +15,7 @@ function ExpenseList({
   deleteExpense,
   editExpense,
 }: ExpenseListProps) {
+
   const filteredExpenses = expenses.filter((expense) =>
     expense.title
       .toLowerCase()
@@ -21,8 +23,9 @@ function ExpenseList({
   );
 
   return (
-    <>
-      <h2>Expense List</h2>
+    <div className="list-container">
+
+      <h2>📋 Expense List</h2>
 
       {filteredExpenses.length === 0 ? (
         <p>No expenses found.</p>
@@ -37,7 +40,8 @@ function ExpenseList({
           />
         ))
       )}
-    </>
+
+    </div>
   );
 }
 

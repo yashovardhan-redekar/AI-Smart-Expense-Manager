@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Expense } from "../types/Expense";
+import "./ExpenseForm.css";
 
 type ExpenseFormProps = {
   expenses: Expense[];
@@ -69,7 +70,10 @@ function ExpenseForm({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+  onSubmit={handleSubmit}
+  className="form-container"
+>
 
       <input
         type="text"
@@ -110,13 +114,17 @@ function ExpenseForm({
       <br />
       <br />
 
-      <button type="submit">
+      <button
+  type="submit"
+  className="form-btn"
+>
         {editingIndex !== null ? "Update Expense" : "Add Expense"}
       </button>
 
       {editingIndex !== null && (
         <button
-          type="button"
+  type="button"
+  className="cancel-btn"
           onClick={() => {
             setEditingIndex(null);
             setEditingExpense(null);

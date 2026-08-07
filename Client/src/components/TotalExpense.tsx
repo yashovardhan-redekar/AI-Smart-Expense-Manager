@@ -1,4 +1,5 @@
 import type { Expense } from "../types/Expense";
+import "./TotalExpense.css";
 
 type TotalExpenseProps = {
   expenses: Expense[];
@@ -14,15 +15,17 @@ function TotalExpense({
   );
 
   return (
-    <>
-      <hr />
+    <div className="total-expense">
 
-      <h2>Total Expense : ₹ {total}</h2>
+      <h2>
+        💰 Total Expense: ₹{total}
+      </h2>
 
       <h3>
-        Number of Expenses : {expenses.length}
+        📄 Number of Expenses: {expenses.length}
       </h3>
-    </>
+
+    </div>
   );
 }
 
