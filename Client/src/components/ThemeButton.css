@@ -1,0 +1,29 @@
+.theme-container {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.theme-container.light {
+  background-color: #f8f9fa;
+  color: #222;
+}
+
+.theme-container.dark {
+  background-color: #222;
+  color: white;
+}
+
+.theme-container button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.theme-container button:hover {
+  opacity: 0.8;
+}

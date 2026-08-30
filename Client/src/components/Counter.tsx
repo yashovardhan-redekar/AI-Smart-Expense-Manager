@@ -1,49 +1,50 @@
-import { useState } from "react";
+import useCounter from "../hooks/useCounter";
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const {
+    count,
+    increase,
+    decrease,
+    reset,
+    increaseByFive,
+    decreaseByFive,
+    double,
+    half,
+  } = useCounter();
 
   return (
     <>
       <h2>Count: {count}</h2>
-      <p>You CLicked {count} Times.</p>
-      <button onClick={() => setCount(count + 1)}>
+
+      <p>You Clicked {count} Times.</p>
+
+      <button onClick={increase}>
         Increase
       </button>
 
-      <button
-        onClick={() => {
-          if (count > 0) {
-            setCount(count - 1);
-          }
-        }}
-      >
+      <button onClick={decrease}>
         Decrease
       </button>
 
-      <button onClick={() => setCount(0)}>
+      <button onClick={reset}>
         Reset
-                          
-      </button>
-      <button onClick={() => setCount(count + 5)}> +5
       </button>
 
-          <button
-            onClick={() => {
-              if (count >= 5) {
-                setCount(count - 5);
-              }
-            }}
-          >
-            -5
-          </button>
-          <button onClick={() => setCount(count * 2)}>
-            Double
-          </button>
+      <button onClick={increaseByFive}>
+        +5
+      </button>
 
-          <button onClick={() => setCount(Math.floor(count / 2))}>
-            Half
-          </button>
+      <button onClick={decreaseByFive}>
+        -5
+      </button>
+
+      <button onClick={double}>
+        Double
+      </button>
+
+      <button onClick={half}>
+        Half
+      </button>
     </>
   );
 }

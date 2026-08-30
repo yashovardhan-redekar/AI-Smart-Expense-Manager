@@ -34,12 +34,18 @@
 
 
 import ExpenseTracker from "./components/ExpenseTracker";
+import ThemeButton from "./components/ThemeButton";
+import { ThemeProvider } from "./context/ThemeContext";
+import UserList from "./components/UserList";
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
+      <ThemeButton />
       <ExpenseTracker />
-    </>
+      <UserList />
+    </ThemeProvider>
+    
   );
 }
 
