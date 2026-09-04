@@ -33,19 +33,31 @@
 // export default App;
 
 
+import { useContext } from "react";
+import "./App.css";
 import ExpenseTracker from "./components/ExpenseTracker";
 import ThemeButton from "./components/ThemeButton";
 import { ThemeProvider } from "./context/ThemeContext";
+import ThemeContext from "./context/ThemeContext";
 import UserList from "./components/UserList";
+
+function AppContent() {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div className={`app ${theme}`}>
+      <ThemeButton />
+      <ExpenseTracker />
+      <UserList />
+    </div>
+  );
+}
 
 function App() {
   return (
     <ThemeProvider>
-      <ThemeButton />
-      <ExpenseTracker />
-      <UserList />
+      <AppContent />
     </ThemeProvider>
-    
   );
 }
 

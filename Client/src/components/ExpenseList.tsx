@@ -5,6 +5,7 @@ import "./ExpenseList.css";
 type ExpenseListProps = {
   expenses: Expense[];
   searchText: string;
+  selectedCategory: string;
   deleteExpense: (index: number) => void;
   editExpense: (index: number) => void;
 };
@@ -12,16 +13,22 @@ type ExpenseListProps = {
 function ExpenseList({
   expenses,
   searchText,
+  selectedCategory,
   deleteExpense,
   editExpense,
 }: ExpenseListProps) {
 
-  const filteredExpenses = expenses.filter((expense) =>
-    expense.title
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
-  );
+const filteredExpenses = expenses.filter((expense) => {
+  const matchesSearch = expense.title
+    .toLowerCase()
+    .includes(searchText.toLowerCase());
 
+  const matchesCategory =
+    selectedCategory === "" ||
+    expense.category === selectedCategory;
+
+  return matchesSearch && matchesCategory;
+});
   return (
     <div className="list-container">
 

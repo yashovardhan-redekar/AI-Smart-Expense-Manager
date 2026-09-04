@@ -182,3 +182,20 @@
     border-right-color: var(--border);
   }
 }
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app.light {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: #ffffff;
+}

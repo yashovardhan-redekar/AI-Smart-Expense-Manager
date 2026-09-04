@@ -5,7 +5,11 @@ import ExpenseList from "./ExpenseList";
 import TotalExpense from "./TotalExpense";
 import Dashboard from "./Dashboard";
 import CategorySummary from "./CategorySummary";
+import CategoryAnalytics from "./CategoryAnalytics";
+import BudgetTracker from "./BudgetTracker";
+import ExpenseInsights from "./ExpenseInsights";
 import "./ExpenseTracker.css";
+
 
 import type { Expense } from "../types/Expense";
 
@@ -20,10 +24,24 @@ function ExpenseTracker() {
 
     return [];
   });
+  //budget
+  const [budget, setBudget] = useState<number>(() => {
+  const savedBudget = localStorage.getItem("monthlyBudget");
+
+  if (savedBudget) {
+    return Number(savedBudget);
+  }
+
+  return 0;
+});
+
+useEffect(() => {
+  localStorage.setItem("monthlyBudget", String(budget));
+}, [budget]);
 
   // Search
   const [searchText, setSearchText] = useState("");
-
+  const [selectedCategory, setSelectedCategory] = useState("");
   // Editing states
   const [editingIndex, setEditingIndex] =
     useState<number | null>(null);
@@ -70,6 +88,7 @@ function ExpenseTracker() {
   };
 
   return (
+    
   <div className="expense-container">
      <h1 className="title">
   💰 Expense Tracker
@@ -86,8 +105,18 @@ function ExpenseTracker() {
       <br />
       <br />
 
-      <Dashboard expenses={expenses} />
+     <Dashboard expenses={expenses} />
 
+<BudgetTracker
+  expenses={expenses}
+  budget={budget}
+  setBudget={setBudget}
+/>
+
+<ExpenseInsights
+  expenses={expenses}
+  budget={0}
+/>
       <ExpenseForm
         key={editingIndex ?? "new"}
         expenses={expenses}
@@ -109,24 +138,54 @@ function ExpenseTracker() {
           setSearchText(e.target.value)
         }
       />
+      <select
+  className="category-filter"
+  value={selectedCategory}
+  onChange={(e) =>
+    setSelectedCategory(e.target.value)
+  }
+>
+  <option value="">All Categories</option>
+  <option value="Food">Food</option>
+  <option value="Travel">Travel</option>
+  <option value="Shopping">Shopping</option>
+  <option value="Bills">Bills</option>
+  <option value="Entertainment">Entertainment</option>
+  <option value="Health">Health</option>
+  <option value="Education">Education</option>
+  <option value="Other">Other</option>
+</select>
+<button
+  className="clear-filter-btn"
+  onClick={() => {
+    setSearchText("");
+    setSelectedCategory("");
+  }}
+>
+  Clear Filters
+</button>
 
       <br />
       <br />
 
       <ExpenseList
-        expenses={expenses}
-        searchText={searchText}
-        deleteExpense={deleteExpense}
-        editExpense={editExpense}
-      />
-
+  expenses={expenses}
+  searchText={searchText}
+  selectedCategory={selectedCategory}
+  deleteExpense={deleteExpense}
+  editExpense={editExpense}
+/>
       <br />
 
       <CategorySummary expenses={expenses} />
 
-      <br />
+<br />
 
-      <TotalExpense expenses={expenses} />
+<CategoryAnalytics expenses={expenses} />
+
+<br />
+
+<TotalExpense expenses={expenses} />
     </div>
   );
 }
