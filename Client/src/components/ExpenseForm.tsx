@@ -32,10 +32,22 @@ function ExpenseForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title || !amount || !category || !date) {
-      alert("Please fill all fields");
-      return;
-    }
+    if (!title.trim() || !amount || !category.trim() || !date) {
+  alert("Please fill all fields");
+  return;
+}
+
+if (Number(amount) <= 0) {
+  alert("Amount must be greater than 0");
+  return;
+}
+
+const today = new Date().toISOString().split("T")[0];
+
+if (date > today) {
+  alert("Expense date cannot be in the future");
+  return;
+}
 
     const newExpense: Expense = {
       title,

@@ -1,29 +1,32 @@
-/* Expense List Container */
-
 .list-container {
-  margin-top: 30px;
+  margin-top: 25px;
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-
-/* Heading */
 
 .list-container h2 {
-  color: #2c3e50;
-  font-size: 28px;
+  margin-top: 0;
   margin-bottom: 20px;
-  text-align: center;
+  color: #2c3e50;
+  font-size: 24px;
 }
 
-/* No Expenses Message */
-
-.list-container p {
+.list-container > p {
   text-align: center;
-  color: #7f8c8d;
-  font-size: 18px;
-  font-style: italic;
+  color: #777;
+  padding: 20px;
+  font-size: 16px;
 }
 
-/* Space between expense cards */
+@media (max-width: 600px) {
+  .list-container {
+    padding: 18px;
+  }
 
-.list-container > * {
-  margin-bottom: 15px;
+  .list-container h2 {
+    font-size: 21px;
+  }
 }

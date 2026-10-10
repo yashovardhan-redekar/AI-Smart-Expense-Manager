@@ -18,34 +18,65 @@ function ExpenseList({
   editExpense,
 }: ExpenseListProps) {
 
-const filteredExpenses = expenses.filter((expense) => {
-  const matchesSearch = expense.title
-    .toLowerCase()
-    .includes(searchText.toLowerCase());
+  // ==============================
+  // Filter Expenses
+  // ==============================
 
-  const matchesCategory =
-    selectedCategory === "" ||
-    expense.category === selectedCategory;
+  const filteredExpenses = expenses.filter((expense) => {
 
-  return matchesSearch && matchesCategory;
-});
+    // Search filter
+    const matchesSearch =
+      expense.title
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+
+    // Category filter
+    const categoryFilter =
+      selectedCategory.trim().toLowerCase();
+
+    const matchesCategory =
+      categoryFilter === "" ||
+      categoryFilter === "all" ||
+      categoryFilter === "all categories" ||
+      expense.category.toLowerCase() === categoryFilter;
+
+    return matchesSearch && matchesCategory;
+  });
+
+
+  // ==============================
+  // Display
+  // ==============================
+
   return (
     <div className="list-container">
 
       <h2>📋 Expense List</h2>
 
       {filteredExpenses.length === 0 ? (
+
         <p>No expenses found.</p>
+
       ) : (
-        filteredExpenses.map((expense, index) => (
-          <ExpenseItem
-            key={index}
-            expense={expense}
-            index={index}
-            deleteExpense={deleteExpense}
-            editExpense={editExpense}
-          />
-        ))
+
+        filteredExpenses.map((expense) => {
+
+          // Find the original index
+          // so Edit/Delete work correctly
+          const originalIndex =
+            expenses.indexOf(expense);
+
+          return (
+            <ExpenseItem
+              key={originalIndex}
+              expense={expense}
+              index={originalIndex}
+              deleteExpense={deleteExpense}
+              editExpense={editExpense}
+            />
+          );
+        })
+
       )}
 
     </div>

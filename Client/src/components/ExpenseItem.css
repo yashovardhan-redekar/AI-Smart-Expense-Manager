@@ -2,58 +2,150 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   background-color: white;
-  padding: 18px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+
+  padding: 20px;
+  margin-bottom: 16px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .expense-card:hover {
   transform: translateY(-4px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==============================
+   Expense Details
+   ============================== */
+
+.expense-details {
+  flex: 1;
 }
 
 .expense-details h3 {
-  margin: 0;
+  margin: 0 0 8px;
+
   color: #2c3e50;
+
+  font-size: 20px;
+
+  font-weight: 600;
 }
 
 .expense-details p {
-  margin: 6px 0;
+  margin: 5px 0;
+
   color: #555;
+
   font-size: 15px;
 }
 
+
+/* ==============================
+   Button Group
+   ============================== */
+
 .button-group {
   display: flex;
+
   gap: 10px;
+
+  margin-left: 20px;
 }
+
+
+/* ==============================
+   Edit Button
+   ============================== */
 
 .edit-btn {
   background-color: #ffc107;
-  color: black;
+
+  color: #212529;
+
   border: none;
+
   padding: 10px 16px;
+
   border-radius: 8px;
+
   cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
   transition: 0.3s;
 }
 
 .edit-btn:hover {
   background-color: #e0a800;
+
+  transform: translateY(-1px);
 }
+
+
+/* ==============================
+   Delete Button
+   ============================== */
 
 .delete-btn {
   background-color: #dc3545;
+
   color: white;
+
   border: none;
+
   padding: 10px 16px;
+
   border-radius: 8px;
+
   cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
   transition: 0.3s;
 }
 
 .delete-btn:hover {
   background-color: #b02a37;
+
+  transform: translateY(-1px);
+}
+
+
+/* ==============================
+   Mobile Responsive
+   ============================== */
+
+@media (max-width: 600px) {
+
+  .expense-card {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 15px;
+  }
+
+  .button-group {
+    margin-left: 0;
+
+    justify-content: flex-end;
+  }
+
 }
